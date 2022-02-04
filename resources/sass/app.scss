@@ -1,0 +1,22 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+@import 'resources/sass/general';
+@import 'resources/sass/show';
+
+
+nav a {
+  color: $white;
+}
+
+.active {
+  color: $indigo;
+  font-weight: 600;
+}
