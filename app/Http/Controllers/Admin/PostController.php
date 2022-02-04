@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 //namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Str;
@@ -19,7 +20,10 @@ class PostController extends Controller
     {
         $posts = Post::orderBy('id', 'desc')
                         ->paginate(5);
-        return view('admin.posts.index', compact('posts'));
+
+        $categories = Category::all();
+
+        return view('admin.posts.index', compact('posts', 'categories'));
     }
 
     /**
@@ -29,7 +33,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -66,8 +72,10 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
+        $categories = Category::all();
+
         if($post){
-            return view('admin.posts.show', compact('post'));
+            return view('admin.posts.show', compact('post', 'categories'));
         }
         abort(404, 'Questa pagina non esiste');
     }

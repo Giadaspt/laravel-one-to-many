@@ -8,6 +8,9 @@
         <h2 class="text-center">
           {{ $post->title}}
         </h2>
+        @if ($post->category)
+          <h4>{{ $post->category->name }}</h4>
+        @endif
         <p>
           {{ $post->content }}
         </p>

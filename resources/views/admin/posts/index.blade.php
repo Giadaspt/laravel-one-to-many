@@ -15,6 +15,7 @@
           <th scope="col">Id</th>
           <th scope="col">Title</th>
           <th scope="col">Content</th>
+          <th scope="col">Category</th>
         </tr>
       </thead>
       <tbody>
@@ -23,6 +24,12 @@
             <th scope="row">{{ $post->id }}</th>
             <td>{{ $post->title }}</td>
             <td>{{ $post->content }}</td>
+
+            @if ($post->category)
+              <td>{{ $post->category->name }}</td>
+            @else
+            <td> - </td>
+            @endif
             <td>
               <button class="btn btn-info">
                 <a class="text-white" href="{{ route('admin.posts.show', $post) }}"> Show </a>
@@ -58,6 +65,20 @@
       </div>
     </div>
     </section>
+
+    <div class="container mt-3" >
+      @foreach ($categories as $category)
+        <h2>{{ $category->name }}</h2>
+        <ul>
+          @foreach ($category->posts as $post_cat)
+              <li>
+              <a href="{{ route('admin.posts.show', $post_cat) }}"> {{ $post_cat->title }} </a>  
+            </li>
+          @endforeach
+        </ul>
+      @endforeach
+    </div>
+
 @endsection
 
 @section('title')

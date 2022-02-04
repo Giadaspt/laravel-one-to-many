@@ -43,7 +43,21 @@
             {{$message}}
           </p>
         @enderror
+
+        <div>
+          <label for="content" class="form-label">Seleziona una categoria</label>
+          <select name="category_id" id="category_id" class="form-control" >
+            <option>Scegli la categoria</option>
+  
+            @foreach ($categories as $category)
+              <option @if ($category->id == old('category_id')) selected
+              @endif value="{{$category->id}}">{{ $category->name }}</option>
+            @endforeach
+  
+          </select> 
+        </div>
       </div>
+
       <section  class="d-flex justify-content-between">
         <button class="btn btn-primary mr-2">
           <a class="text-white" href=" {{ URL::previous() }} "> Indietro </a>
